@@ -65,14 +65,14 @@ jobs:
           wait-on-timeout: 120
 
       - name: 💾 Save videos
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: videos-edge
           path: cypress/videos
 
       - name: 💾 Save screenshots
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: screenshots-edge
@@ -115,14 +115,14 @@ jobs:
           wait-on-timeout: 120
 
       - name: 💾 Save videos
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: videos-edge
           path: cypress/videos
 
       - name: 💾 Save screenshots
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: screenshots-edge
@@ -163,14 +163,14 @@ jobs:
           wait-on-timeout: 120
 
       - name: 💾 Save videos
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: videos-edge
           path: cypress/videos
 
       - name: 💾 Save screenshots
-        if: failed()
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: screenshots-edge
