@@ -48,6 +48,8 @@ jobs:
     steps:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
+        with:
+          repository: KaotoIO/kaoto-ui
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -96,6 +98,8 @@ jobs:
     steps:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
+        with:
+          repository: KaotoIO/kaoto-ui
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -146,6 +150,8 @@ jobs:
     steps:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
+        with:
+          repository: KaotoIO/kaoto-ui
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
