@@ -1,0 +1,177 @@
+name: 🏗️ E2E Tests (Cypress)
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+
+    steps:
+      - name: 👷‍♀️ Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: KaotoIO/kaoto-ui
+
+      - name: 👩‍🏭 Cypress install
+        uses: cypress-io/github-action@v5.5.1
+        with:
+          runTests: false
+          build: yarn build
+
+      - name: 💾 Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          if-no-files-found: error
+          path: dist
+
+  test-on-firefox:
+    needs: install
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+
+    services:
+      kaoto:
+        image: kaotoio/backend:latest
+        ports:
+          # will assign a random free host port
+          - 8081/tcp
+    steps:
+      - name: 👷‍♀️ Checkout
+        uses: actions/checkout@v3
+
+      - name: 🗄️ Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: 🤓 Set KAOTO_API
+        run: echo "KAOTO_API=http://kaoto:8081" > .env
+
+      - name: 🔨 Cypress run
+        uses: cypress-io/github-action@v5.5.1
+        with:
+          browser: firefox
+          start: yarn start
+          wait-on: "http://localhost:1337"
+          wait-on-timeout: 120
+
+      - name: 💾 Save videos
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: videos-edge
+          path: cypress/videos
+
+      - name: 💾 Save screenshots
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots-edge
+          path: cypress/screenshots
+
+  test-on-chrome:
+    needs: install
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+
+    services:
+      kaoto:
+        image: kaotoio/backend:main
+        ports:
+          # will assign a random free host port
+          - 8081/tcp
+    steps:
+      - name: 👷‍♀️ Checkout
+        uses: actions/checkout@v3
+
+      - name: 🗄️ Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: 🤓 Set KAOTO_API
+        run: echo "KAOTO_API=http://kaoto:8081" > .env
+
+      - name: 🔨 Cypress run
+        uses: cypress-io/github-action@v5.5.1
+        with:
+          browser: chrome
+          # we have already installed all dependencies above
+          #          install: false
+          start: yarn start
+          wait-on: "http://localhost:1337"
+          wait-on-timeout: 120
+
+      - name: 💾 Save videos
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: videos-edge
+          path: cypress/videos
+
+      - name: 💾 Save screenshots
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots-edge
+          path: cypress/screenshots
+
+  test-on-edge:
+    needs: install
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+
+    services:
+      kaoto:
+        image: kaotoio/backend:main
+        ports:
+          # will assign a random free host port
+          - 8081/tcp
+    steps:
+      - name: 👷‍♀️ Checkout
+        uses: actions/checkout@v3
+
+      - name: 🗄️ Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: 🤓 Set KAOTO_API
+        run: echo "KAOTO_API=http://kaoto:8081" > .env
+
+      - name: 🔨 Cypress run
+        uses: cypress-io/github-action@v5.5.1
+        with:
+          browser: edge
+          start: yarn start
+          wait-on: "http://localhost:1337"
+          wait-on-timeout: 120
+
+      - name: 💾 Save videos
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: videos-edge
+          path: cypress/videos
+
+      - name: 💾 Save screenshots
+        if: failed()
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots-edge
+          path: cypress/screenshots
