@@ -22,7 +22,8 @@ jobs:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
         with:
-          repository: KaotoIO/kaoto-ui
+          repository: unsortedhashsets/kaoto-ui
+          ref: adjust_e2e-3_test
           
       - name: 👩‍🏭 Cypress install
         uses: cypress-io/github-action@v5.6.1
