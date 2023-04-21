@@ -20,7 +20,7 @@ jobs:
           repository: KaotoIO/kaoto-ui
 
       - name: 👩‍🏭 Cypress install
-        uses: cypress-io/github-action@v5.5.1
+        uses: cypress-io/github-action@v5.6.1
         with:
           runTests: false
           build: yarn build
@@ -61,7 +61,7 @@ jobs:
         run: echo "KAOTO_API=http://kaoto:8081" > .env
 
       - name: 🔨 Cypress run
-        uses: cypress-io/github-action@v5.5.1
+        uses: cypress-io/github-action@v5.6.1
         with:
           browser: firefox
           start: yarn start
@@ -111,7 +111,7 @@ jobs:
         run: echo "KAOTO_API=http://kaoto:8081" > .env
 
       - name: 🔨 Cypress run
-        uses: cypress-io/github-action@v5.5.1
+        uses: cypress-io/github-action@v5.6.1
         with:
           browser: chrome
           # we have already installed all dependencies above
@@ -163,7 +163,7 @@ jobs:
         run: echo "KAOTO_API=http://kaoto:8081" > .env
 
       - name: 🔨 Cypress run
-        uses: cypress-io/github-action@v5.5.1
+        uses: cypress-io/github-action@v5.6.1
         with:
           browser: edge
           start: yarn start
