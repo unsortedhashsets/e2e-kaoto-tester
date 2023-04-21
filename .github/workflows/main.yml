@@ -55,7 +55,8 @@ jobs:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
         with:
-          repository: KaotoIO/kaoto-ui
+          repository: unsortedhashsets/kaoto-ui
+          ref: adjust_e2e-3_test
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -105,7 +106,8 @@ jobs:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
         with:
-          repository: KaotoIO/kaoto-ui
+          repository: unsortedhashsets/kaoto-ui
+          ref: adjust_e2e-3_test
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -157,7 +159,8 @@ jobs:
       - name: 👷‍♀️ Checkout
         uses: actions/checkout@v3
         with:
-          repository: KaotoIO/kaoto-ui
+          repository: unsortedhashsets/kaoto-ui
+          ref: adjust_e2e-3_test
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
