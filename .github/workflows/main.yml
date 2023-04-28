@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: unsortedhashsets/kaoto-ui
-          ref: adjust_e2e-3_test
+          ref: 1700_e2e_about
           
       - name: 👩‍🏭 Cypress install
         uses: cypress-io/github-action@v5.6.1
@@ -56,7 +56,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: unsortedhashsets/kaoto-ui
-          ref: adjust_e2e-3_test
+          ref: 1700_e2e_about
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -107,7 +107,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: unsortedhashsets/kaoto-ui
-          ref: adjust_e2e-3_test
+          ref: 1700_e2e_about
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
@@ -160,7 +160,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: unsortedhashsets/kaoto-ui
-          ref: adjust_e2e-3_test
+          ref: 1700_e2e_about
 
       - name: 🗄️ Download the build folders
         uses: actions/download-artifact@v3
